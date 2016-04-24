@@ -1,0 +1,56 @@
+#include <math.h>
+
+int analogPin = 0; //pin a0 is input pin
+int rawData = 0; //rawData is the data read on a0
+int vIn = 5; //reference voltage
+float vOut = 0; //output voltage 
+float r1 = 100; //reference resistor
+float r2 = 0; //measurement of unknown resistor
+float buffer = 0; //data buffer
+double biasOutput;
+
+void setup() 
+{
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  pinMode(11, OUTPUT);  
+}
+
+void loop() 
+{
+  // put your main code here, to run repeatedly:
+
+  rawData = analogRead(analogPin);
+  if (rawData)
+  {
+    //reading on a0 * input voltage
+    buffer = rawData * vIn;
+    //chop up the reading into 1024 parts
+    vOut = buffer /1024.0;
+    
+    // vin/vout = r1/(r1+r2)
+    buffer = (vIn/vOut) - 1;
+    //solved for r2
+    r2 = r1 * buffer;
+
+    //corrects for curve in linear sending unit 
+    //for logarithmic gauge with a pnp transistor 
+    //-.0002624x^2 + .079942x + .3745
+    biasOutput = (-.0002624*pow(r2,2)) + .079942*r2 + .3745;
+
+    analogWrite(11, biasOutput*51);
+
+    //serial monitor outputs
+    Serial.print("Measured Voltage: \t");
+    Serial.print(vOut);
+    Serial.print("\tMeasured Resistance:\t");
+    Serial.print(r2);
+    Serial.print("\tBias Voltage:\t");
+    Serial.print(biasOutput);
+    Serial.print("\tPWM Output\t");
+    Serial.print(biasOutput * 51);
+    Serial.println("");
+  }
+  delay(1000);
+
+}
