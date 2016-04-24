@@ -19,5 +19,6 @@ In order for this to work correctly, several modifications to the vehicle's elec
 Because gasGauge was designed using an Arduino, it should be important to note a few things: 
   1. The original design was used with an Arduino Uno. However, any Arduino with an ATMEL 328 chip and a 5V analog output should work. That being said, it would be impractical to account for every single pin orientation of all the Arduino units. The current code sets the analog input pinto a0 and the PWM output to pin 11. Pay close attention to the input and output pins on your Arduino to ensure they exist and/or are correct!  
   2. Connect the Arduino to your computer. Open a new Arduino sketch and paste the gasGauge code (see file named "gasGauge.ico" at the top-level of this repository.
-  3. If you want to look at the inputs and outputs going to the Arduino, you can open a serial monitor window. It will show you 
+  3. Upload the sketch to your Arduino board - this is a pretty easy step.
+  4. If you want to look at the inputs and outputs going to the Arduino, you can open a serial monitor window with the Arduino in-circuit and connected to your computer.
 
