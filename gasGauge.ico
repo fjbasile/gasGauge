@@ -1,6 +1,7 @@
 #include <math.h>
 
 int analogPin = 0; //pin a0 is input pin
+int outputPin = 11; //pin 11 is output pin
 int rawData = 0; //rawData is the data read on a0
 int vIn = 5; //reference voltage
 float vOut = 0; //output voltage 
@@ -13,7 +14,7 @@ void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(11, OUTPUT);  
+  pinMode(outputPin, OUTPUT);  
 }
 
 void loop() 
@@ -38,7 +39,7 @@ void loop()
     //-.0002624x^2 + .079942x + .3745
     biasOutput = (-.0002624*pow(r2,2)) + .079942*r2 + .3745;
 
-    analogWrite(11, biasOutput*51);
+    analogWrite(outputPin, biasOutput*51);
 
     //serial monitor outputs
     Serial.print("Measured Voltage: \t");
