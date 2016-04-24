@@ -11,8 +11,8 @@ In order to fix this problem, GasGauge was created to serve as a microprocessor 
 #Hardware Configuration
 
 In order for this to work correctly, several modifications to the vehicle's electrical system will be required. For most people, this is generally a game changer, but it need not be. 
-1. See the schematic labeled gasGaugeCircuit in the top level of this repository on how to make changes to the fuel sensing circuit. It may be possible to deviate from the part numbers/values listed in the schematic, but the ones listed have been proven to work for our particular scenario.
-2. This ONLY works with 5V fuel systems. 12V systems will NOT run without further modification and code refactoring.
+  1. See the schematic labeled gasGaugeCircuit in the top level of this repository on how to make changes to the fuel sensing circuit. It may be possible to deviate from the part numbers/values listed in the schematic, but the ones listed have been proven to work for our particular scenario.
+  2. This ONLY works with 5V fuel systems. 12V systems will NOT run without further modification and code refactoring.
 
 
 #How to Compile
