@@ -19,12 +19,10 @@ void setup()
 
 void loop() 
 {
-  // put your main code here, to run repeatedly:
-
   rawData = analogRead(analogPin);
   if (rawData)
   {
-    //reading on a0 * input voltage
+    //reading on a0 * reference voltage
     buffer = rawData * vIn;
     //chop up the reading into 1024 parts
     vOut = buffer /1024.0;
